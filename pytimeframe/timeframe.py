@@ -16,6 +16,15 @@ class Timeframe(object):
         self.now = self._gen_now()
         self.day_start = self._get_day_start()
 
+        self.__init_convenience_properties()
+
+    def __init_convenience_properties(self):
+        props = ('today', 'this_day', 'this_week', 'this_month', 'this_year', 'yesterday',
+                 'previous_day', 'previous_week', 'previous_month', 'previous_year')
+
+        for prop in props:
+            setattr(self, prop, self.span(prop))
+
     def span(self, frame):
         now = self._gen_now()
         now_date = self._get_day_start()
