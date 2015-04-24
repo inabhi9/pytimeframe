@@ -1,8 +1,11 @@
 import datetime
-import pytz
 import re
 
+import pytz
+
+
 __all__ = ['Timeframe']
+
 
 class Timeframe(object):
     tz = 'utc'
@@ -39,11 +42,11 @@ class Timeframe(object):
             return start, now
         elif len(this_n_days) == 1:
             day = int(this_n_days[0])
-            start = now_date - datetime.timedelta(days=day-1)
+            start = now_date - datetime.timedelta(days=day - 1)
             return start, now
         elif len(this_n_weeks) == 1:
             week = int(this_n_weeks[0])
-            start = self._get_week_start() - datetime.timedelta(weeks=week-1)
+            start = self._get_week_start() - datetime.timedelta(weeks=week - 1)
             return start, now
         elif len(this_n_months) == 1:
             months = self._get_month_start().month - (int(this_n_months[0]) - 1)
@@ -95,7 +98,7 @@ class Timeframe(object):
         return self.day_start - datetime.timedelta(days=self.day_start.isoweekday())
 
     def _get_month_start(self):
-        return self.day_start - datetime.timedelta(days=self.day_start.day-1)
+        return self.day_start - datetime.timedelta(days=self.day_start.day - 1)
 
     @classmethod
     def _get_n_unit(cls, frame, period, unit):
