@@ -1,8 +1,8 @@
 import datetime
 import re
-
 import pytz
 
+from arrow import Arrow
 
 __all__ = ['Timeframe']
 
@@ -58,8 +58,9 @@ class Timeframe(object):
             start = self._get_week_start() - datetime.timedelta(weeks=week - 1)
             return start, now
         elif len(this_n_months) == 1:
-            months = self._get_month_start().month - (int(this_n_months[0]) - 1)
-            start = self._get_month_start().replace(month=months)
+            s = self._get_month_start()
+            ar = Arrow.fromdate(s, s.tzinfo)
+            start = ar.replace(months=-(int(this_n_months[0]) - 1)).datetime
             return start, now
         elif len(this_n_years) == 1:
             years = self._get_month_start().year - (int(this_n_years[0]) - 1)
@@ -84,9 +85,10 @@ class Timeframe(object):
             end = self._get_week_start() - datetime.timedelta(seconds=1)
             return start, end
         elif len(previous_n_months) == 1:
-            months = self._get_month_start().month - previous_n_months[0]
-            start = self._get_month_start().replace(month=months)
-            end = self._get_month_start() - datetime.timedelta(seconds=1)
+            s = self._get_month_start()
+            ar = Arrow.fromdate(s, s.tzinfo)
+            start = ar.replace(months=-previous_n_months[0]).datetime
+            end = s - datetime.timedelta(seconds=1)
             return start, end
         elif len(previous_n_years) == 1:
             years = self._get_month_start().year - previous_n_years[0]
