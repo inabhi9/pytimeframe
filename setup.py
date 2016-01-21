@@ -16,7 +16,7 @@ packages = ['pytimeframe']
 
 setup (
     name='pytimeframe',
-    version='0.0.2',
+    version='0.0.31',
     zip_safe=True,
     description='Span date range from time frame string',
     author=me,
@@ -25,7 +25,6 @@ setup (
     maintainer_email=memail,
     install_requires=['pytz', 'arrow'],
     url='https://github.com/inabhi9/pytimeframe',
-    license=open('LICENSE','r').read(),
     keywords=['timeframe', 'datetime', 'time'],
     packages=packages,
     platforms=['Independant'],
