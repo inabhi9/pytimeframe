@@ -106,7 +106,9 @@ class Timeframe(object):
         return self.day_start
 
     def _get_week_start(self):
-        return self.day_start - datetime.timedelta(days=self.day_start.isoweekday())
+        s = self.day_start
+        ar = Arrow.fromdate(s, s.tzinfo)
+        return ar.floor('week').datetime
 
     def _get_month_start(self):
         return self.day_start - datetime.timedelta(days=self.day_start.day - 1)

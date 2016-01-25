@@ -16,7 +16,7 @@ packages = ['pytimeframe']
 
 setup (
     name='pytimeframe',
-    version='0.0.31',
+    version='0.0.4',
     zip_safe=True,
     description='Span date range from time frame string',
     author=me,
